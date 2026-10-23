@@ -1,0 +1,29 @@
+[package]
+name = "drifter"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.98"
+description = "A native, parallel HTTP downloader powered by wgpu"
+license = "MIT"
+
+[dependencies]
+anyhow = "1"
+eframe = { package = "eframe", version = "0.37", default-features = false, features = ["wgpu", "default_fonts", "clipboard", "accesskit", "x11", "wayland"] }
+futures-util = "0.3"
+reqwest = { version = "0.13", default-features = false, features = ["rustls", "stream", "system-proxy"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "fs", "io-util", "time", "sync"] }
+tokio-util = "0.7"
+tempfile = "3"
+url = "2"
+percent-encoding = "2"
+directories = "6"
+rfd = "0.17"
+
+[dev-dependencies]
+axum = "0.8"
+sha2 = "0.10"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
